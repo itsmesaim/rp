@@ -1,0 +1,326 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Bold professional fonts ── */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap');
+
+:root {
+  /* Bebas Neue = big bold display headings, Inter = clean readable body */
+  --font-display: 'Bebas Neue', 'Arial Black', Impact, sans-serif;
+  --font-body:    'Inter', 'Arial', sans-serif;
+  --font-serif:   'Cormorant Garamond', Georgia, serif;
+
+  --rose:       #E8657A;
+  --rose-dark:  #C2556A;
+  --blush:      #F0A8B8;
+  --blush-soft: #FADADD;
+  --bg:         #0F0818;
+  --bg-card:    rgba(255,255,255,0.045);
+  --border:     rgba(255,255,255,0.075);
+  --brose:      rgba(232,101,122,0.22);
+  --text:       #F0E8F4;
+  --text-muted: rgba(240,232,244,0.55);
+  --text-dim:   rgba(240,232,244,0.28);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:var(--bg); }
+::-webkit-scrollbar-thumb { background:var(--rose-dark); border-radius:2px; }
+
+/* ── Grain overlay ── */
+.noise::after {
+  content:''; position:fixed; inset:0;
+  pointer-events:none; z-index:9999; opacity:.25;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E");
+}
+
+/* ── Dev banner ── */
+.dev-banner {
+  position:fixed; top:0; left:0; right:0; z-index:1060;
+  height:28px; background:#06020e; overflow:hidden;
+  display:flex; align-items:center;
+  border-bottom:1px solid rgba(232,101,122,.15);
+}
+.dev-banner-track {
+  display:inline-flex; white-space:nowrap;
+  animation:ticker 32s linear infinite;
+}
+.dev-banner-track span {
+  font-family:var(--font-body); font-size:.68rem; font-weight:600;
+  color:var(--rose-dark); letter-spacing:.16em;
+  text-transform:uppercase; padding:0 48px;
+}
+@keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ── Buttons ── */
+.btn-p {
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--rose-dark); color:#fff;
+  padding:14px 32px; border-radius:8px;
+  font-weight:700; font-size:.9rem; letter-spacing:.06em;
+  text-transform:uppercase;
+  font-family:var(--font-body); border:none; cursor:pointer;
+  transition:background .25s, transform .25s, box-shadow .25s;
+  text-decoration:none;
+}
+.btn-p:hover { background:var(--rose); transform:translateY(-2px); box-shadow:0 8px 28px rgba(232,101,122,.5); color:#fff; }
+
+.btn-o {
+  display:inline-flex; align-items:center; gap:8px;
+  background:transparent; color:var(--blush);
+  padding:14px 32px; border-radius:8px;
+  font-weight:700; font-size:.9rem; letter-spacing:.06em;
+  text-transform:uppercase;
+  font-family:var(--font-body); border:2px solid var(--rose-dark);
+  cursor:pointer; transition:all .25s; text-decoration:none;
+}
+.btn-o:hover { background:rgba(232,101,122,.12); color:#fff; transform:translateY(-2px); }
+
+/* ── Typography ── */
+.lbl {
+  display:block; font-family:var(--font-body);
+  font-size:.68rem; font-weight:700;
+  letter-spacing:.28em; text-transform:uppercase;
+  color:var(--blush); opacity:.7; margin-bottom:10px;
+}
+
+/* Bebas Neue headings — tall, bold, cinematic */
+.hdg {
+  font-family:var(--font-display);
+  font-size:clamp(3rem,6vw,5rem);
+  font-weight:400; /* Bebas is always bold by design */
+  letter-spacing:.04em; line-height:.95;
+  color:#f5dde8;
+  text-transform:uppercase;
+}
+
+/* ── Skill pill bars ── */
+.skill-track {
+  width:100%; height:54px; border-radius:12px;
+  background:rgba(255,255,255,.055); overflow:hidden; position:relative;
+}
+.skill-track-bg-label {
+  position:absolute; left:20px; top:50%; transform:translateY(-50%);
+  font-family:var(--font-body); font-size:.88rem; font-weight:600;
+  color:rgba(240,232,244,.14); pointer-events:none; user-select:none;
+}
+.skill-fill {
+  height:100%; width:0%;
+  border-radius:12px;
+  display:flex; align-items:center; padding:0 20px;
+  transition:width 1.4s cubic-bezier(.4,0,.2,1);
+  position:relative; overflow:hidden;
+}
+.skill-fill::after {
+  content:''; position:absolute; top:0; right:0;
+  width:40px; height:100%;
+  background:linear-gradient(to right,transparent,rgba(255,255,255,.1));
+}
+.skill-fill span {
+  font-family:var(--font-body); font-weight:700;
+  font-size:.88rem; color:#fff; position:relative; z-index:1;
+  text-transform:uppercase; letter-spacing:.06em;
+}
+
+/* ── Tool cards ── */
+.tool-card {
+  width:110px; height:110px;
+  display:flex; flex-direction:column; align-items:center;
+  justify-content:center; gap:8px;
+  border-radius:14px; padding:14px;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  transition:box-shadow .3s, transform .25s, border-color .3s;
+}
+.tool-card:hover {
+  box-shadow:0 0 22px 6px rgba(232,101,122,.22);
+  transform:scale(1.08);
+  border-color:var(--brose);
+}
+.tool-card p {
+  font-family:var(--font-body); font-size:.72rem;
+  font-weight:700; color:var(--text-muted); margin:0;
+  letter-spacing:.05em; text-transform:uppercase;
+}
+
+/* ── Project cards ── */
+.proj-card {
+  display:grid; grid-template-columns:1fr auto; gap:20px;
+  align-items:center;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:14px; padding:26px 28px;
+  transition:border-color .25s, box-shadow .25s, transform .25s;
+  cursor:pointer;
+}
+.proj-card:hover {
+  border-color:var(--brose);
+  box-shadow:0 16px 48px rgba(232,101,122,.1);
+  transform:translateY(-3px);
+}
+
+/* ── Achievement cards ── */
+.ach-card {
+  background:var(--bg-card); border:1px solid var(--border);
+  border-radius:16px; padding:36px 24px; text-align:center;
+  transition:border-color .3s, box-shadow .3s, transform .3s;
+}
+.ach-card:hover {
+  border-color:var(--brose);
+  box-shadow:0 20px 50px rgba(232,101,122,.12);
+  transform:translateY(-4px);
+}
+
+/* ── Contact inputs ── */
+.inp {
+  width:100%; background:rgba(255,255,255,.04);
+  border:1px solid var(--border); border-radius:8px;
+  padding:13px 16px; color:var(--text);
+  font-size:.9rem; font-family:var(--font-body);
+  outline:none; transition:border-color .25s, box-shadow .25s; resize:none;
+}
+.inp::placeholder { color:var(--text-dim); }
+.inp:focus { border-color:var(--rose-dark); box-shadow:0 0 0 3px rgba(194,85,106,.12); }
+
+/* ── Avatar glow animation ── */
+.av-glow { animation:avFloat 5s ease-in-out infinite; }
+@keyframes avFloat {
+  0%,100%{ filter:drop-shadow(0 0 28px rgba(232,101,122,.3)); }
+  50%    { filter:drop-shadow(0 0 52px rgba(232,101,122,.55)); transform:translateY(-6px); }
+}
+@keyframes chipFloat { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
+
+/* ── Typewriter bracket-strikethrough ── */
+.bracket-strike {
+  display:inline;
+  text-decoration:line-through;
+  text-decoration-color:rgba(232,101,122,.5);
+  color:var(--rose);
+}
+.bracket-strike::before { content:"("; text-decoration:none; color:rgba(240,168,184,.7); }
+.bracket-strike::after  { content:")"; text-decoration:none; color:rgba(240,168,184,.7); }
+
+.typed-cursor {
+  display:inline-block; width:3px; height:.8em;
+  background:var(--rose); margin-left:2px;
+  animation:blink .8s step-end infinite;
+  vertical-align:text-bottom;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* ── CSS Floating Bubbles (background decoration) ── */
+.bubbles-bg {
+  position:absolute; inset:0; overflow:hidden; pointer-events:none; z-index:0;
+}
+.bubble {
+  position:absolute; border-radius:50%;
+  background:radial-gradient(circle at 30% 30%, rgba(232,101,122,.18), rgba(194,85,106,.04));
+  border:1px solid rgba(232,101,122,.12);
+  animation:bubbleRise linear infinite;
+}
+@keyframes bubbleRise {
+  0%   { transform:translateY(0) scale(1); opacity:0; }
+  10%  { opacity:1; }
+  90%  { opacity:.6; }
+  100% { transform:translateY(-110vh) scale(1.1); opacity:0; }
+}
+
+/* ── Scroll animations (additive — content always visible) ── */
+@keyframes fadeUp    { from{opacity:.01;transform:translateY(32px);}  to{opacity:1;transform:none;} }
+@keyframes fadeLeft  { from{opacity:.01;transform:translateX(-32px);} to{opacity:1;transform:none;} }
+@keyframes fadeRight { from{opacity:.01;transform:translateX(32px);}  to{opacity:1;transform:none;} }
+.anim-up    { animation:fadeUp    .7s cubic-bezier(.4,0,.2,1) both; }
+.anim-left  { animation:fadeLeft  .7s cubic-bezier(.4,0,.2,1) both; }
+.anim-right { animation:fadeRight .7s cubic-bezier(.4,0,.2,1) both; }
+
+/* ════════════════════════════════════════════
+   MOBILE RESPONSIVE — full breakpoints
+   ════════════════════════════════════════════ */
+
+/* Tablet: ≤ 900px */
+@media (max-width: 900px) {
+  .hdg { font-size:clamp(2.4rem,8vw,4rem); }
+
+  /* Hero: stack vertically — avatar on top, text below */
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  .hero-avatar-col {
+    order: -1;           /* avatar above text on mobile */
+    height: 360px !important;
+  }
+  .hero-text-col {
+    text-align: center;
+  }
+  .hero-text-col .lbl { justify-content:center; }
+  .hero-buttons { justify-content: center !important; }
+  .hero-socials { justify-content: center !important; }
+
+  /* About: stack */
+  .about-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+  .about-photo-placeholder { height: 280px !important; }
+
+  /* Skills: single column */
+  .skills-grid { grid-template-columns: 1fr !important; gap: 2rem !important; }
+
+  /* Achievements: 1 column */
+  .ach-grid { grid-template-columns: 1fr !important; }
+
+  /* Contact: stack */
+  .contact-grid { grid-template-columns: 1fr !important; }
+
+  /* Projects section padding */
+  .proj-card { padding: 20px 18px !important; }
+  .proj-card-chart { width:70px !important; height:70px !important; }
+
+  /* Tool cards smaller */
+  .tool-card { width:90px !important; height:90px !important; }
+}
+
+/* Phone: ≤ 600px */
+@media (max-width: 600px) {
+  .hdg { font-size: clamp(2rem, 10vw, 3rem); }
+
+  .hero-avatar-col { height: 300px !important; }
+
+  .btn-p, .btn-o {
+    padding: 12px 22px !important;
+    font-size: .82rem !important;
+    width: 100%;
+    justify-content: center;
+  }
+  .hero-buttons { flex-direction: column !important; gap: 10px !important; }
+
+  .proj-card {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .proj-card-chart { display: none !important; }
+
+  .ach-card { padding: 28px 18px !important; }
+
+  .section-pad { padding: 5rem 0 !important; }
+
+  .tool-card { width:80px !important; height:80px !important; }
+  .tool-card p { font-size:.65rem !important; }
+
+  /* Contact form full width */
+  .contact-grid { gap: 2rem !important; }
+}
+
+/* Very small: ≤ 380px */
+@media (max-width: 380px) {
+  .hero-avatar-col { height: 260px !important; }
+  .hdg { font-size: 2rem; }
+}

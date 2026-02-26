@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Background circle -->
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#52203A"/>
+      <stop offset="100%" style="stop-color:#3D1258"/>
+    </linearGradient>
+    <linearGradient id="rose" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#E8657A"/>
+      <stop offset="100%" style="stop-color:#C2556A"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
+
+  <!-- R letter — bold, slightly left to make room for bars -->
+  <text
+    x="9"
+    y="45"
+    font-family="Arial Black, Impact, sans-serif"
+    font-size="38"
+    font-weight="900"
+    fill="url(#rose)"
+    letter-spacing="-1"
+  >R</text>
+
+  <!-- Data bar chart — bottom right corner -->
+  <!-- Bar 1 (short) -->
+  <rect x="40" y="46" width="5" height="10" rx="1.5" fill="rgba(232,101,122,0.45)"/>
+  <!-- Bar 2 (medium) -->
+  <rect x="47" y="39" width="5" height="17" rx="1.5" fill="rgba(232,101,122,0.7)"/>
+  <!-- Bar 3 (tall) -->
+  <rect x="54" y="30" width="5" height="26" rx="1.5" fill="rgba(232,101,122,0.95)"/>
+
+  <!-- Trend line connecting bar tops -->
+  <polyline
+    points="42.5,46 49.5,39 56.5,30"
+    fill="none"
+    stroke="rgba(240,168,184,0.6)"
+    stroke-width="1.5"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-dasharray="2,2"
+  />
+
+  <!-- Small dot at peak -->
+  <circle cx="56.5" cy="30" r="2" fill="#F0A8B8"/>
+</svg>

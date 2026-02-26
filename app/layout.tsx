@@ -9,17 +9,17 @@ export const metadata: Metadata = {
 }
 
 const BANNER = '✦  Website is under development  ✦  Rahat Pangarkar · Data Analyst  ✦  Website is under development  ✦  Rahat Pangarkar · Data Analyst  ✦  Website is under development  ✦  Rahat Pangarkar · Data Analyst  ✦  Website is under development  ✦  Rahat Pangarkar · Data Analyst  '
-// const BANNER = 'Enjoy'
-
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <link rel="icon" type="image/svg+xml" href="/favicon1.svg" />
+        <link rel="shortcut icon" href="/favicon1.svg" />
         <meta name="theme-color" content="#0F0818" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
       </head>
       <body className="noise">
         {/* Dev banner */}
@@ -38,6 +38,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             © 2025 Rahat Pangarkar
             <span style={{ color:'var(--rose-dark)', margin:'0 10px' }}>·</span>
             crafted with love <span style={{ color:'var(--rose)' }}>♡</span>
+            {' '}
+            <span style={{
+              fontFamily:"'Dancing Script', cursive",
+              fontSize:'1.05rem',
+              fontWeight:700,
+              background:'linear-gradient(90deg, #F5C842, #E8A020)',
+              WebkitBackgroundClip:'text',
+              WebkitTextFillColor:'transparent',
+              letterSpacing:'.02em',
+            }}>
+              frames
+            </span>
           </p>
         </footer>
       </body>
